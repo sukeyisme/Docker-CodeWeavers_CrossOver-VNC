@@ -1,2 +1,4 @@
 # Docker-CodeWeavers_CrossOver-VNC
-A docker for run CrossOver though VNC remote manage
+百度云的docker镜像
+
+docker hub的repo地址：
