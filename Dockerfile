@@ -1,7 +1,6 @@
-# Using CentOS 6 base image and VNC
-# Version 0.1
+# Using CentOS 7 base image and VNC
+# Version 1.0
 
-# Pull the rhl image from the local repository
 FROM centos:7
 MAINTAINER john.shine <mr.john.shine@gmail.com>
 LABEL io.openshift.expose-services="5901:tcp"

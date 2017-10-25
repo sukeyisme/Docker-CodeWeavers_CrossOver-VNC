@@ -1,7 +1,6 @@
-# Using CentOS 6 base image and VNC
-# Version 0.1
+# Using CentOS 7 base image and VNC
+# Version 1.0
 
-# Pull the rhl image from the local repository
 FROM centos:7
 MAINTAINER john.shine <mr.john.shine@gmail.com>
 LABEL io.openshift.expose-services="5901:tcp"
@@ -16,6 +15,7 @@ EXPOSE 5901
 
 ADD xstartup ${HOME}/.vnc/
 ADD install-crossover-16.2.5.bin /tmp/install-crossover-16.2.5.bin
+ADD default ${HOME}/.cxoffice/default
 
 RUN /bin/dbus-uuidgen --ensure
 RUN useradd -u 100 -r -g 0 -d ${HOME} -s /bin/bash ${USER}
@@ -51,11 +51,10 @@ USER ${USER}
 RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
 # install crossover
-RUN /bin/echo -e "if [[ -f /home/crossover/cxoffice/bin/crossover ]]; then" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    /home/crossover/cxoffice/bin/crossover" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "else" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination /home/crossover/cxoffice --noreadme --noprompt --nooptions && \\" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    /home/crossover/cxoffice/bin/crossover" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "if [[ ! -f ${HOME}/cxoffice/bin/crossover ]]; then" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${HOME}/cxoffice --noreadme --noprompt --nooptions && \\" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "export WINEPREFIX=\"${HOME}/.cxoffice/default/\""
+RUN /bin/echo -e "/${HOME}/cxoffice/bin/wine --bottle default  "c:\\Program Files\\baidu\\BaiduNetdisk\\baidunetdisk.exe"
 
 RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
