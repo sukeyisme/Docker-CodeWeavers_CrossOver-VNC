@@ -13,4 +13,4 @@ if [ -z ${version} ] ; then
 fi
 
 echo 'starting to build image'
-nohup docker build --cpuset-cpus=0-3 -t crossover-vnc:${version} . > build.${version}.log &
+nohup docker build -t crossover-vnc:${version} . > build.${version}.log &
