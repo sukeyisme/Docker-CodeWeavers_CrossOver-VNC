@@ -10,12 +10,13 @@ USER root
 ENV DISPLAY=":1"
 ENV USER="crossover"
 ENV HOME=/home/${USER}
+ENV BOTTLE="default"
 ARG vnc_password=""
 EXPOSE 5901
 
 ADD xstartup ${HOME}/.vnc/
 ADD install-crossover-16.2.5.bin /tmp/install-crossover-16.2.5.bin
-ADD default ${HOME}/.cxoffice/default
+ADD default ${HOME}/.cxoffice/${BOTTLE}
 
 RUN /bin/dbus-uuidgen --ensure
 RUN useradd -u 100 -r -g 0 -d ${HOME} -s /bin/bash ${USER}
@@ -52,9 +53,10 @@ RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
 # install crossover
 RUN /bin/echo -e "if [[ ! -f ${HOME}/cxoffice/bin/crossover ]]; then" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${HOME}/cxoffice --noreadme --noprompt --nooptions && \\" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${HOME}/cxoffice --noreadme --noprompt --nooptions" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "export WINEPREFIX=\"${HOME}/.cxoffice/default/\""
-RUN /bin/echo -e "/${HOME}/cxoffice/bin/wine --bottle default  "c:\\Program Files\\baidu\\BaiduNetdisk\\baidunetdisk.exe"
+RUN /bin/echo -e "env WINEPREFIX=\"${HOME}/.cxoffice/${BOTTLE}/\" /${HOME}/cxoffice/bin/wine --bottle ${BOTTLE}  \"c:\\\\\\\\Program Files\\\\\\\\baidu\\\\\\\\BaiduNetdisk\\\\\\\\baidunetdisk.exe\"" >> ${HOME}/.vnc/xstartup
 
+RUN /bin/mv "${HOME}/.cxoffice/${BOTTLE}/drive_c/users/@current_user@" "${HOME}/.cxoffice/${BOTTLE}/drive_c/users/${USER}"
+RUN /bin/sed -i "s#@current_user@#$USER#" ${HOME}/.cxoffice/${BOTTLE}/*.reg
 RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
