@@ -54,6 +54,7 @@ RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetro
 # install crossover
 RUN /bin/echo -e "if [[ ! -f ${HOME}/cxoffice/bin/crossover ]]; then" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${HOME}/cxoffice --noreadme --noprompt --nooptions" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    ps -f 'crossover'" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "env WINEPREFIX=\"${HOME}/.cxoffice/${BOTTLE}/\" /${HOME}/cxoffice/bin/wine --bottle ${BOTTLE}  \"c:\\\\\\\\Program Files\\\\\\\\baidu\\\\\\\\BaiduNetdisk\\\\\\\\baidunetdisk.exe\"" >> ${HOME}/.vnc/xstartup
 
