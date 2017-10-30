@@ -10,7 +10,6 @@ ENV INSTALLDIR="/home/crossover/cxoffice"
 EXPOSE 5901
 
 ADD xstartup ${HOME}/.vnc/
-ADD kill.sh /tmp/kill.sh
 
 USER root
 RUN yum check-update -y ; \
@@ -40,7 +39,6 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 USER ${USER}
 
-COPY BaiduNetdisk.tar.xz /tmp/
 COPY Init.sh ${HOME}/.cxoffice/Init.sh
 COPY fonts/ /tmp/fonts/
 COPY installers /tmp/installers
