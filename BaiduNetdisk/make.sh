@@ -13,4 +13,4 @@ if [ -z ${version} ] ; then
 fi
 
 echo 'starting to build image'
-sudo docker build -t johnshine/baidunetdisk-crossover-vnc:${version} .
+sudo docker build --rm -t johnshine/baidunetdisk-crossover-vnc:${version} .
