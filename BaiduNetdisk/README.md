@@ -6,6 +6,7 @@ docker hub的repo地址：https://hub.docker.com/r/johnshine/baidunetdisk-crosso
 ## 快速上手
 
 pull镜像到本地
+
 `sudo docker pull johnshine/baidunetdisk-crossover-vnc:latest /bin/bash`
 
 启动镜像，就会在5901端口开启vnc远程连接端口
@@ -13,9 +14,10 @@ pull镜像到本地
 `sudo docker docker run -d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:latest /bin/bash`
 
 或者，你也可以指定vnc远程连接的密码方式启动
+
 `sudo docker docker run -d -p 5901:5901 -e vnc_password=your_password johnshine/baidunetdisk-crossover-vnc:latest /bin/bash`
 
-使用vnc连接5901端口即可
+使用VNC客户端连接5901端口即可
 
 ## VNC客户端推荐
 
