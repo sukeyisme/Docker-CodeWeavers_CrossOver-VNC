@@ -18,8 +18,8 @@ RUN yum check-update -y ; \
 RUN ln -s /usr/lib/libtiff.so.5.2.0 /usr/lib/libtiff.so.4 && \
     ln -s /usr/lib/libOSMesa.so.8.0.0 /usr/lib/libOSMesa.so.6
 
-RUN wget https://raw.githubusercontent.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/master/BaiduNetdisk/installers/rpms/mpg123-libs-1.23.6-2.sdl7.i686.rpm -O /tmp/mpg123-libs-1.23.6-2.sdl7.i686.rpm && rpm -i /tmp/mpg123-libs-1.23.6-2.sdl7.i686.rpm && rm -f /tmp/mpg123-libs-1.23.6-2.sdl7.i686.rpm ; \
-    wget https://raw.githubusercontent.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/master/BaiduNetdisk/installers/rpms/openal-soft-1.16.0-2.sdl7.i686.rpm -O /tmp/openal-soft-1.16.0-2.sdl7.i686.rpm && rpm -i /tmp/openal-soft-1.16.0-2.sdl7.i686.rpm && rm -f /tmp/openal-soft-1.16.0-2.sdl7.i686.rpm
+RUN wget https://raw.githubusercontent.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/master/BaiduNetdisk/installers/rpm/mpg123-libs-1.23.6-2.sdl7.i686.rpm -O /tmp/mpg123-libs-1.23.6-2.sdl7.i686.rpm && rpm -i /tmp/mpg123-libs-1.23.6-2.sdl7.i686.rpm && rm -f /tmp/mpg123-libs-1.23.6-2.sdl7.i686.rpm ; \
+    wget https://raw.githubusercontent.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/master/BaiduNetdisk/installers/rpm/openal-soft-1.16.0-2.sdl7.i686.rpm -O /tmp/openal-soft-1.16.0-2.sdl7.i686.rpm && rpm -i /tmp/openal-soft-1.16.0-2.sdl7.i686.rpm && rm -f /tmp/openal-soft-1.16.0-2.sdl7.i686.rpm
 
 RUN chmod 775 ${HOME}/.vnc/xstartup
 
