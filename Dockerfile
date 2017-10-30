@@ -10,11 +10,11 @@ USER root
 ENV DISPLAY=":1"
 ENV USER="crossover"
 ENV HOME=/home/${USER}
+ENV INSTALLDIR=/opt/cxoffice
 ARG vnc_password=""
 EXPOSE 5901
 
 ADD xstartup ${HOME}/.vnc/
-ADD install-crossover-16.2.5.bin /tmp/install-crossover-16.2.5.bin
 
 RUN /bin/dbus-uuidgen --ensure
 RUN useradd -u 100 -r -g 0 -d ${HOME} -s /bin/bash ${USER}
@@ -34,8 +34,7 @@ RUN touch ${HOME}/.Xauthority
 
 RUN chown -R 100:0 ${HOME} && \
     chmod 775 ${HOME}/.vnc/xstartup && \
-    chmod 600 ${HOME}/.vnc/passwd && \
-    chmod +x /tmp/install-crossover-16.2.5.bin
+    chmod 600 ${HOME}/.vnc/passwd
 
 WORKDIR ${HOME}
 
@@ -50,11 +49,11 @@ USER ${USER}
 RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
 # install crossover
-RUN /bin/echo -e "if [[ -f /home/crossover/cxoffice/bin/crossover ]]; then" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    /home/crossover/cxoffice/bin/crossover" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "if [[ -f ${INSTALLDIR}/bin/crossover ]]; then" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    ${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "else" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination /home/crossover/cxoffice --noreadme --noprompt --nooptions && \\" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    /home/crossover/cxoffice/bin/crossover" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    wget http://192.168.1.169/install-crossover-16.2.5.bin -O /tmp/install-crossover-16.2.5.bin && chmod +x /tmp/install-crossover-16.2.5.bin && /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${INSTALLDIR} --noreadme --noprompt --nooptions && rm -f /tmp/install-crossover-16.2.5.bin && \\" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    ${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
 
 RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
