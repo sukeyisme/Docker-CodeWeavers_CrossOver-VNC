@@ -46,4 +46,4 @@ pull镜像到本地
 
 ## 版权声明
 
-本项目引用的百度云客户端归“北京百度网讯科技有限公司”所有，CrossOver归CodeWeavers Inc所有，其它遵从GPL协议
+本项目引用的百度云客户端归“北京百度网讯科技有限公司”所有，CrossOver归CodeWeavers Inc所有，字体归制作方所有，其它遵从GPL协议
