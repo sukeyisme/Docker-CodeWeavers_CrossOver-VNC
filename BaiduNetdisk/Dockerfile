@@ -6,7 +6,6 @@ MAINTAINER john.shine <mr.john.shine@gmail.com>
 LABEL io.openshift.expose-services="5901:tcp"
 
 ENV BOTTLE="BaiduNetDisk"
-ENV INSTALLDIR="/home/crossover/cxoffice"
 EXPOSE 5901
 
 ADD xstartup ${HOME}/.vnc/

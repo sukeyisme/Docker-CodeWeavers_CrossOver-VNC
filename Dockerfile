@@ -9,6 +9,8 @@ USER root
 
 ENV DISPLAY=":1"
 ENV USER="crossover"
+ENV UID=100
+ENV GID=0
 ENV HOME=/home/${USER}
 ENV INSTALLDIR=/opt/cxoffice
 ARG vnc_password=""
@@ -17,7 +19,7 @@ EXPOSE 5901
 ADD xstartup ${HOME}/.vnc/
 
 RUN /bin/dbus-uuidgen --ensure
-RUN useradd -u 100 -r -g 0 -d ${HOME} -s /bin/bash ${USER}
+RUN useradd -g ${GID} -u ${UID} -r -d ${HOME} -s /bin/bash ${USER}
 RUN echo "root:root" | chpasswd
 # set password of ${USER} to ${USER}
 RUN echo "${USER}:${USER}" | chpasswd
@@ -32,9 +34,11 @@ RUN yum check-update -y ; \
 RUN echo "${vnc_password}" | vncpasswd -f > ${HOME}/.vnc/passwd
 RUN touch ${HOME}/.Xauthority
 
-RUN chown -R 100:0 ${HOME} && \
+RUN chown -R ${UID}:${GID} ${HOME} && \
     chmod 775 ${HOME}/.vnc/xstartup && \
-    chmod 600 ${HOME}/.vnc/passwd
+    chmod 600 ${HOME}/.vnc/passwd && \
+    mkdir -p ${INSTALLDIR} && \
+    chown -R ${UID}:${GID} ${INSTALLDIR}
 
 WORKDIR ${HOME}
 
@@ -52,8 +56,7 @@ RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetro
 RUN /bin/echo -e "if [[ -f ${INSTALLDIR}/bin/crossover ]]; then" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    ${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "else" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    wget http://192.168.1.169/install-crossover-16.2.5.bin -O /tmp/install-crossover-16.2.5.bin && chmod +x /tmp/install-crossover-16.2.5.bin && /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${INSTALLDIR} --noreadme --noprompt --nooptions && rm -f /tmp/install-crossover-16.2.5.bin && \\" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    ${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    wget http://192.168.1.169/install-crossover-16.2.5.bin -O /tmp/install-crossover-16.2.5.bin && chmod +x /tmp/install-crossover-16.2.5.bin && /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${INSTALLDIR} --noreadme --noprompt --nooptions && rm -f /tmp/install-crossover-16.2.5.bin" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
 
 RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
