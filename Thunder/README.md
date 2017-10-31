@@ -1,2 +1,3 @@
-# Docker-CodeWeavers_CrossOver-VNC
-A docker for run CrossOver though VNC remote manage
+# 迅雷下载客服端的docker镜像
+
+未完待续……

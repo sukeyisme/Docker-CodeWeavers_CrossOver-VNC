@@ -52,7 +52,7 @@ RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetro
 RUN /bin/echo -e "if [[ -f ${INSTALLDIR}/bin/crossover ]]; then" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    ${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "else" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "    wget http://192.168.1.169/install-crossover-16.2.5.bin -O /tmp/install-crossover-16.2.5.bin && chmod +x /tmp/install-crossover-16.2.5.bin && /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${INSTALLDIR} --noreadme --noprompt --nooptions && rm -f /tmp/install-crossover-16.2.5.bin && \\" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/install-crossover-16.2.5.bin -O /tmp/install-crossover-16.2.5.bin && chmod +x /tmp/install-crossover-16.2.5.bin && /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${INSTALLDIR} --noreadme --noprompt --nooptions && rm -f /tmp/install-crossover-16.2.5.bin && \\" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    ${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
 
