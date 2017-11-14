@@ -31,6 +31,8 @@ RUN yum install -y --setopt=tsflags=nodocs kde-l10n-Chinese telnet && \
     yum reinstall -y glibc-common && \
     localedef -c -f UTF-8 -i zh_CN zh_CN.utf8
 
+RUN rm -f ${HOME}/.vnc/72d3d91f9363\:1.log
+
 ENV LC_ALL "zh_CN.UTF-8"  
 # ENV LC_ALL "en_US.UTF-8"  
 
@@ -45,9 +47,9 @@ COPY installers /tmp/installers
 # Always run the WM last!
 RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
-#RUN /bin/echo -e "if [[ ! -d ${HOME}/.cxoffice/${BOTTLE}/ ]]; then" >> ${HOME}/.vnc/xstartup
-#RUN /bin/echo -e "    xterm -maximized -font -*-*-medium-r-*-*-18-*-*-*-*-*-iso8859-* -e ${HOME}/.cxoffice/Init.sh" >> ${HOME}/.vnc/xstartup
-#RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
-#RUN /bin/echo -e "${INSTALLDIR}/bin/wine --bottle ${BOTTLE}  \"c:\\\\\\\\Program Files\\\\\\\\BaiduNetdisk\\\\\\\\baidunetdisk.exe\"" >> ${HOME}/.vnc/xstartup
-#RUN /bin/echo -e "if [[ -d /mnt/drive_d/ ]]; then sudo chown -R ${UID}:${GID} /mnt/drive_d; fi" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "if [[ ! -d ${HOME}/.cxoffice/${BOTTLE}/ ]]; then" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    xterm -maximized -font -*-*-medium-r-*-*-18-*-*-*-*-*-iso8859-* -e ${HOME}/.cxoffice/Init.sh" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "${INSTALLDIR}/bin/wine --bottle ${BOTTLE}  \"c:\\\\\\\\Program Files\\\\\\\\BaiduNetdisk\\\\\\\\baidunetdisk.exe\"" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "if [[ -d /mnt/drive_d/ ]]; then sudo chown -R ${UID}:${GID} /mnt/drive_d; fi" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "tail -f /dev/null" >> ${HOME}/.vnc/xstartup
