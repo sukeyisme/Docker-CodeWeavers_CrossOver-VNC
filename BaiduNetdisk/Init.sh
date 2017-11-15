@@ -8,6 +8,10 @@ for font in /tmp/fonts/*; do
   ${INSTALLDIR}/bin/wine --bottle "${BOTTLE}" --untrusted --wait-children --no-convert -- 'cxinstallfonts.exe' "${font}"
 done
 
+
+sudo mkdir -p /mnt/drive_d/BaiduNetdiskDownload && sudo chown ${UID}:${GID} -R /mnt/drive_d
+ln -sf /mnt/drive_d "${HOME}/.cxoffice/${BOTTLE}/dosdevices/d:"
+env LC_ALL="en_US.UTF-8" ${INSTALLDIR}/bin/wine --bottle ${BOTTLE} --wait-children --wl-app 'reboot.exe'
 env LC_ALL="en_US.UTF-8" ${INSTALLDIR}/bin/wine --bottle "${BOTTLE}" --untrusted --wait-children --no-convert --new-console -- "/tmp/installers/exe/Firefox Setup 20.0_zh-CN.exe" "-ms" && rm -f "/tmp/Firefox Setup 20.0.exe"
 
 # 安装ie8浏览器
@@ -50,13 +54,13 @@ done
 
 ${INSTALLDIR}/bin/wine --bottle "${BOTTLE}" Reg.exe add "HKCU\Software\Microsoft\Internet Explorer\Main" /v "TabProcGrowth" /t REG_DWORD /d "00000000" /f
 
-env LC_ALL="en_US.UTF-8" ${INSTALLDIR}/bin/wine --bottle "${BOTTLE}" --untrusted --wait-children --no-convert --new-console -- '/tmp/installers/exe/IE8-WindowsXP-KB2936068-x86-ENU.exe' '/quiet' '/forcerestart'
-case $? in
-  0|194) echo "IE8-WindowsXP-KB2936068-x86-ENU installation successfully"
-    ;;
-  *) echo "IE8-WindowsXP-KB2936068-x86-ENU installation failed"
-    ;;
-esac
+# env LC_ALL="en_US.UTF-8" ${INSTALLDIR}/bin/wine --bottle "${BOTTLE}" --untrusted --wait-children --no-convert --new-console -- '/tmp/installers/exe/IE8-WindowsXP-KB2936068-x86-ENU.exe' '/quiet' '/forcerestart'
+# case $? in
+#   0|194) echo "IE8-WindowsXP-KB2936068-x86-ENU installation successfully"
+#     ;;
+#   *) echo "IE8-WindowsXP-KB2936068-x86-ENU installation failed"
+#     ;;
+# esac
 
 ${INSTALLDIR}/bin/cxassoc --bottle ${BOTTLE} --sync
 # 开始菜单快捷方式
@@ -71,6 +75,3 @@ ${INSTALLDIR}/bin/cxnsplugin --bottle ${BOTTLE} --sync --mode 'ignore'
 tar -Jxf /tmp/installers/BaiduNetdisk.tar.xz -C ${HOME}/.cxoffice/${BOTTLE}/drive_c/Program\ Files/
 sudo mv /tmp/installers/dll/riched20.dll ${HOME}/.cxoffice/${BOTTLE}/drive_c/windows/system32/
 sudo mv /tmp/installers/dll/riched32.dll ${HOME}/.cxoffice/${BOTTLE}/drive_c/windows/system32/
-sudo mkdir -p /mnt/drive_d/BaiduNetdiskDownload && sudo chown ${UID}:${GID} -R /mnt/drive_d
-ln -sf /mnt/drive_d "${HOME}/.cxoffice/${BOTTLE}/dosdevices/d:"
-env LC_ALL="en_US.UTF-8" ${INSTALLDIR}/bin/wine --bottle ${BOTTLE} --wait-children --wl-app 'reboot.exe'
