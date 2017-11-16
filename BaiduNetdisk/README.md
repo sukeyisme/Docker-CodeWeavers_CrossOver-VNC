@@ -33,6 +33,16 @@ pull镜像到本地
 
 ![截图](https://raw.githubusercontent.com/john-shine/Docker-CodeWeavers_CrossOver-VNC/master/BaiduNetdisk/screenshot/1.png)
 
+## 更新历史
+
+### 1.1
++ 修复第三方登录时，提示“QQ安全验证”，无法正常登录
++ 修复CrossOver软件本身乱码的问题
++ 修复下面目录权限不够，无法下面到D盘的问题。现在下载到任何盘的BaiduNetdiskDownload文件夹下，如果运行docker时有绑定目录到/mnt/drive_d，就会都下载到所绑定的文件夹内。^-^
+
+1.0
++ 开天辟地。大问题已经没有了，可以长时间运行下载任务，跑完下载流程。
+
 ## 已知问题
 
 + 无法修改容器内的下载路径为其它路径
