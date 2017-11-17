@@ -46,7 +46,8 @@ RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetro
 RUN /bin/echo -e "if [[ ! -d ${HOME}/.cxoffice/${BOTTLE}/ ]]; then" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    xterm -maximized -font -*-*-medium-r-*-*-18-*-*-*-*-*-iso8859-* -e ${HOME}/.cxoffice/Init.sh" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "[[ -d /mnt/drive_d ]] && ln -s /mnt/drive_d \"${HOME}/.cxoffice/${BOTTLE}/dosdevices/d:\"" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[[ -d /mnt/drive_d ]] && sudo chown -R ${UID}:${GID} /mnt/drive_d" >> ${HOME}/.vnc/xstartup
-#RUN /bin/echo -e "${INSTALLDIR}/bin/wine --bottle ${BOTTLE} \"c:\\\\\\\\Program Files\\\\\\\\Internet Download Manager\\\\\\\\IDMan.exe\"" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "${INSTALLDIR}/bin/wine --bottle ${BOTTLE} \"c:\\\\\\\\Program Files\\\\\\\\Internet Download Manager\\\\\\\\IDMan.exe\"" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "tail -f /dev/null" >> ${HOME}/.vnc/xstartup
 
