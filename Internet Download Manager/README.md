@@ -7,7 +7,7 @@ docker hub的repo地址：https://hub.docker.com/r/johnshine/idm-crossover-vnc/
 
 pull镜像到本地
 
-`sudo docker pull johnshine/-crossover-vnc:latest`
+`sudo docker pull johnshine/idm-crossover-vnc:latest`
 
 启动镜像，就会在5901端口开启vnc远程连接端口。第一个5901是VNC连接的端口，你可以改成其它数字，如果冲突的话
 
