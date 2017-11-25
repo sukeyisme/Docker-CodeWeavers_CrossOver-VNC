@@ -50,7 +50,7 @@ RUN /bin/echo -e "if [[ ! -d ${HOME}/.cxoffice/${BOTTLE}/ ]]; then" >> ${HOME}/.
 RUN /bin/echo -e "    xterm -maximized -font -*-*-medium-r-*-*-18-*-*-*-*-*-iso8859-* -e ${HOME}/.cxoffice/Init.sh" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "sudo mkdir -p /mnt/drive_d/BaiduNetdiskDownload" >> ${HOME}/.vnc/xstartup
-RUN /bin/echo -e "sudo chown -R ${UID}:${GID} /mnt/drive_d" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "sudo chown -R ${UID}:${GID} /mnt/drive_d; sudo chmod -R 755 /mnt/drive_d" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "ln -snf /mnt/drive_d/BaiduNetdiskDownload ${HOME}/BaiduNetdiskDownload" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "ln -snf /mnt/drive_d/BaiduNetdiskDownload /BaiduNetdiskDownload" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "ln -snf /mnt/drive_d/BaiduNetdiskDownload ${HOME}/.cxoffice/${BOTTLE}/drive_c/BaiduNetdiskDownload" >> ${HOME}/.vnc/xstartup
