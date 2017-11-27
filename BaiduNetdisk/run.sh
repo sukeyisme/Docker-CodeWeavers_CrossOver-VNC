@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo docker run -d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:1.1
+sudo docker run -d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:1.2
 
 # The following is for test
 # running=$(sudo docker ps -q --filter status=running)
@@ -9,5 +9,5 @@ sudo docker run -d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:1.1
 # fi
 
 # mkdir -p ./BaiduNetdiskDownload/
-# cid=$(sudo docker run -d --security-opt seccomp:unconfined -v `pwd`/BaiduNetdiskDownload:/mnt/drive_d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:1.1)
+# cid=$(sudo docker run -d --security-opt seccomp:unconfined -v `pwd`/BaiduNetdiskDownload:/mnt/drive_d -p 5901:5901 johnshine/baidunetdisk-crossover-vnc:1.2)
 # sudo docker cp Init.sh ${cid}:/home/crossover/.cxoffice/Init.sh
