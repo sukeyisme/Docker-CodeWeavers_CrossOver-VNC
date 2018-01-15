@@ -14,7 +14,7 @@ Activated by license file, license file can be downloaded on codeweavers.com -> 
 
 `sudo docker run -d -p ${VNC_PORT}:5901 -v /path/to/license/license.sig:/opt/cxoffice/etc/license.sig -v /path/to/license/license.txt:/opt/cxoffice/etc/license.txt -e vnc_password=${YOUR_VNC_PASSWORD} johnshine/crossover-vnc:latest`
 
-如果你对这个项目感兴趣，希望表达一份感谢之情，请打开支付宝<a href="https://mobile.alipay.com/index.htm" target="_blank"><img src="https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/alipay.png" width="24"></a>扫描下面的二维码，你和我都将获得一份支付宝红包
+如果你对这个项目感兴趣，希望表达一份感谢之情，请打开支付宝<a href="https://mobile.alipay.com/index.htm" target="_blank"><img src="https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/alipay.png" width="18"></a>扫描下面的二维码，你和我都将获得一份支付宝红包
 
 ![红包二维码](https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/barcode.png)
 
