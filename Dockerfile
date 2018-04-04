@@ -57,5 +57,8 @@ RUN /bin/echo -e "    ${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "else" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/install-crossover-16.2.5.bin -O /tmp/install-crossover-16.2.5.bin && chmod +x /tmp/install-crossover-16.2.5.bin && /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${INSTALLDIR} --noreadme --noprompt --nooptions && rm -f /tmp/install-crossover-16.2.5.bin" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "if ls /tmp/install-crossover-*.bin 1> /dev/null 2>&1;" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "    then rm -f /tmp/install-crossover-*.bin;" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
 
 RUN /bin/echo -e 'alias ll="ls -last"' >> ${HOME}/.bashrc
