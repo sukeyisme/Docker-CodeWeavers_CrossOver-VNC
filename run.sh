@@ -1,3 +1,4 @@
 #!/bin/bash
 
-sudo docker run -d -p 5901:5901 johnshine/crossover-vnc:1.2
+version=$(cat $(pwd "$0")/VERSION)
+sudo docker run -d -p 5901:5901 johnshine/crossover-vnc:${version}
