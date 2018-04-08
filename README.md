@@ -1,7 +1,7 @@
 # CodeWeavers.CrossOver.VNC Docker image
 A docker image for run CrossOver though VNC remote manage.
 
-# 最近外网一直不是很好，镜像一直push不到docker hub上面，导致docker hub上面不是最新的，所以大家就自己先build吧
+## 最近外网一直不是很好，镜像一直push不到docker hub上面，导致docker hub上面不是最新的，所以大家就自己先build吧
 
 `sudo docker run -d -p ${VNC_PORT}:5901 -e vnc_password=${YOUR_VNC_PASSWORD} johnshine/crossover-vnc:latest`
 
@@ -16,9 +16,9 @@ Activated by license file, license file can be downloaded on codeweavers.com -> 
 
 `sudo docker run -d -p ${VNC_PORT}:5901 -v /path/to/license/license.sig:/opt/cxoffice/etc/license.sig -v /path/to/license/license.txt:/opt/cxoffice/etc/license.txt -e vnc_password=${YOUR_VNC_PASSWORD} johnshine/crossover-vnc:latest`
 
-[//]: #如果你对这个项目感兴趣，希望表达一份感谢之情，请打开支付宝<a href="https://mobile.alipay.com/index.htm" target="_blank"><img src="https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/alipay.png" width="18"></a>扫描下面的二维码，你和我都将获得一份支付宝红包
+[//]: # 如果你对这个项目感兴趣，希望表达一份感谢之情，请打开支付宝<a href="https://mobile.alipay.com/index.htm" target="_blank"><img src="https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/alipay.png" width="18"></a>扫描下面的二维码，你和我都将获得一份支付宝红包
 
-[//]: #![红包二维码](https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/barcode.png)
+[//]: # ![红包二维码](https://raw.githubusercontent.com/john-shine/DIY-iMac-CN/master/images/barcode.png)
 
 ## Change history
 
