@@ -1,6 +1,3 @@
-# Using CentOS 7 base image and VNC
-# Version 1.0
-
 FROM johnshine/crossover-vnc:latest
 MAINTAINER john.shine <mr.john.shine@gmail.com>
 LABEL io.openshift.expose-services="5901:tcp"

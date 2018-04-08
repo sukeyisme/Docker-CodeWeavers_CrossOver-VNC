@@ -1,5 +1,4 @@
 # Using CentOS 7 base image and VNC
-# Version 1.0
 
 FROM centos:7
 MAINTAINER john.shine <mr.john.shine@gmail.com>
