@@ -25,6 +25,7 @@ Activated by license file, license file can be downloaded on codeweavers.com -> 
 1.2
 * retry delete the install binary
 * fix bug: vnc password not work!
+* fix issue: license files is permission denied
 
 1.1
 * change install directory
