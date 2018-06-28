@@ -35,3 +35,9 @@ Activated by license file, license file can be downloaded on codeweavers.com -> 
 
 1.0
 * initialized
+
+## VNC客户端推荐
+
+1. [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/windows/)
+2. [jump desktop](https://jumpdesktop.com/)
+3. [TightVNC](https://github.com/TigerVNC/tigervnc/releases)

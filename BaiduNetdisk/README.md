@@ -26,8 +26,9 @@ pull镜像到本地
 
 ## VNC客户端推荐
 
-1. jump desktop
-2. TightVNC
+1. [VNC Viewer](https://www.realvnc.com/en/connect/download/viewer/windows/)
+2. [jump desktop](https://jumpdesktop.com/)
+3. [TightVNC](https://github.com/TigerVNC/tigervnc/releases)
 
 ##    
 
