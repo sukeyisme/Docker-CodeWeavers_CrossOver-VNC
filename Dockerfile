@@ -51,11 +51,14 @@ USER ${USER}
 RUN /bin/echo -e "export DISPLAY=${DISPLAY}"  >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "[ -r ${HOME}/.Xresources ] && xrdb ${HOME}/.Xresources\nxsetroot -solid grey"  >> ${HOME}/.vnc/xstartup
 # install crossover
+RUN /bin/echo -e "xxxxxxxxxxxxxxx开始安装crossoverxxxxxxxxxxx" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "sudo chown -R ${UID}:${GID} ${HOME}/.cxoffice" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "if [[ -f ${INSTALLDIR}/bin/crossover ]]; then" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    ${INSTALLDIR}/bin/crossover" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "else" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    wget https://media.codeweavers.com/pub/crossover/cxlinux/demo/install-crossover-16.2.5.bin -O /tmp/install-crossover-16.2.5.bin && chmod +x /tmp/install-crossover-16.2.5.bin && /tmp/install-crossover-16.2.5.bin --i-agree-to-all-licenses --destination ${INSTALLDIR} --noreadme --noprompt --nooptions && rm -f /tmp/install-crossover-16.2.5.bin" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup
+RUN /bin/echo -e "xxxxxxxxxxxxxxx结束安装crossoverxxxxxxxxxxxxx" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "if ls /tmp/install-crossover-*.bin 1> /dev/null 2>&1;" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "    then rm -f /tmp/install-crossover-*.bin;" >> ${HOME}/.vnc/xstartup
 RUN /bin/echo -e "fi" >> ${HOME}/.vnc/xstartup

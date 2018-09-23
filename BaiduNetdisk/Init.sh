@@ -1,12 +1,14 @@
 # !/bin/bash
-
+echo '开始初始化'
 ${INSTALLDIR}/bin/cxbottle --create --bottle "${BOTTLE}" --description "百度网盘wine容器" --template "winxp"
+echo '容器创建完成'
 sed -i -e 's/;;"AllowUntrusted" = ""/"AllowUntrusted" = "1"/' ${HOME}/.cxoffice/${BOTTLE}/cxbottle.conf
-
+echo '开始安装字体'
 for font in /tmp/fonts/*; do
 	${INSTALLDIR}/bin/wine --bottle "${BOTTLE}" --untrusted --wait-children --no-convert -- 'cxinstallfonts.exe' "${font}"
 done
 
+echo '创建下载目录'
 sudo mkdir -p /mnt/drive_d/
 ln -sf /mnt/drive_d "${HOME}/.cxoffice/${BOTTLE}/dosdevices/d:"
 
